@@ -1,0 +1,20 @@
+body{
+    width: 90vw;
+    position:absolute;
+    justify-items: center;
+    margin: 5%;
+}
+
+h1{
+    padding-top:5%;
+}
+
+.addsubmitbutton{
+    font-size: small;
+    background-color: chartreuse;
+}
+
+.table{
+    width: 100%;
+    margin-top: 5%;
+}
