@@ -20,16 +20,12 @@ function addRoundField(){
     document.body.appendChild(input)
 };
 
-
 function addSubmitButton(){
     button = document.createElement("button");
     document.body.appendChild(button);
     button.innerText="Submit";
     button.classList.add('btn', 'btn-primary', "form-control");
     button.addEventListener('click', (event)=>handleSubmit(event) );
-
-    // let submitButton = document.getElementsByName("button");
-    // submitButton.style.color="red";
 }
 
 function handleSubmit(event){
@@ -38,8 +34,7 @@ function handleSubmit(event){
     console.log(event);
     let season = document.getElementsByName("Season")[0].value;
     let round = document.getElementsByName("Round")[0].value;
-    getData(season, round);
-
+    getData(season, round);    
 };
 
 function createTable(){
@@ -100,9 +95,10 @@ async function getData(seasonInput, roundInput){
     let result = await axios.get(`https://ergast.com/api/f1/${seasonInput}/${roundInput}/driverStandings.json`)
         console.log(result)
         result = result.data.MRData.StandingsTable.StandingsLists[0].DriverStandings
-    
+
     let tbody=document.getElementsByTagName('tbody')[0];
     
+    tbody.innerHTML = '';
     for(const driver of result){
 
     let tr=document.createElement('tr');
@@ -142,5 +138,6 @@ async function getData(seasonInput, roundInput){
     td.scope='row';
     td.innerHTML=`${driver.Constructors[0].constructorId}`
     tr.appendChild(td);
-    };
-};
+    }
+
+};  
